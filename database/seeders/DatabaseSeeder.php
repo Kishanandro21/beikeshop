@@ -2,60 +2,28 @@
 
 namespace Database\Seeders;
 
-use Beike\Models\CustomerGroup;
-use Beike\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     * @throws \Throwable
-     */
-    public function run()
+    public function run(): void
     {
         $this->call([
-            BrandsSeeder::class,
-            CategoriesSeeder::class,
-            CountriesSeeder::class,
-            CurrenciesSeeder::class,
-            CustomerGroupsSeeder::class,
-            LanguagesSeeder::class,
-            PagesSeeder::class,
-            PageCategoriesSeeder::class,
-            PluginsSeeder::class,
-            ZonesSeeder::class,
-            ProductsSeeder::class,
-            AttributesSeeder::class,
-            SettingsSeeder::class,
-            ThemeSeeder::class,
-            RmaReasonsSeeder::class,
+            RolePermissionSeeder::class,
         ]);
-    }
 
-    /**
-     * @throws \Throwable
-     */
-    private function duplicate(): void
-    {
-        $baseProduct = Product::with(['productCategories', 'descriptions', 'skus'])->findOrFail(2);
-        $newProduct = $baseProduct->replicate();
-        $newProduct->saveOrFail();
-        $newProductId = $newProduct->id;
+        $user = User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('admin123'),
+        ]);
 
-        if ($newProductId) {
-            $relations = $baseProduct->getRelations();
-            foreach ($relations as $name => $relation) {
-                dump($name);
-                foreach ($relation as $relationRecord) {
-                    $newRelationship = $relationRecord->replicate();
-                    $newRelationship->product_id = $newProductId;
-                    $newRelationship->push();
-                }
-            }
-        }
+        $user->assignRole('admin');
+
+        $this->call([
+            MenuSeeder::class,
+        ]);
     }
 }
