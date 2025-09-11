@@ -8446,11 +8446,11 @@
         },
         {
             "name": "laravel-lang/attributes",
-            "version": "2.13.5",
+            "version": "2.13.6",
             "dist": {
                 "type": "zip",
-                "url": "https://mirrors.tencent.com/repository/composer/laravel-lang/attributes/2.13.5/laravel-lang-attributes-2.13.5.zip",
-                "reference": "0f7a0c195cbd4eb000b14dc3fd233dacd23a10f7",
+                "url": "https://mirrors.tencent.com/repository/composer/laravel-lang/attributes/2.13.6/laravel-lang-attributes-2.13.6.zip",
+                "reference": "2b86d41fa05e0ee9ca710c544951567ad91e0484",
                 "shasum": ""
             },
             "require": {
@@ -8503,9 +8503,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Laravel-Lang/attributes/issues",
-                "source": "https://github.com/Laravel-Lang/attributes/tree/2.13.5"
+                "source": "https://github.com/Laravel-Lang/attributes/tree/2.13.6"
             },
-            "time": "2025-06-23T09:39:20+00:00"
+            "time": "2025-09-10T20:38:31+00:00"
         },
         {
             "name": "laravel-lang/lang",
